@@ -14,13 +14,13 @@ namespace DoctorAppointment.Application.UseCases.Admin
     public class GetAppointmentsUseCase(IAppointmentRepository appointmentRepo)
     {
         public async Task<Result<PagedResult<AppointmentDto>>> ExecuteAsync(
-            string? status, DateOnly? date, int page, int pageSize)
+            string? status, DateTime? date, int page, int pageSize)
         {
             AppointmentStatus? parsedStatus = status is not null
                 ? Enum.Parse<AppointmentStatus>(status, true)
                 : null;
 
-            var items = await appointmentRepo.GetAllAsync(parsedStatus, date, page, pageSize);
+            var items = await appointmentRepo.GetFilteredAsync(parsedStatus, date, page, pageSize);
             var total = await appointmentRepo.CountAsync(parsedStatus, date);
 
             var dtos = items.Select(a => new AppointmentDto(

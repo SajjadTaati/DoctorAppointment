@@ -15,16 +15,16 @@ namespace DoctorAppointment.Application.UseCases.Appointment
         IWorkingHourRepository workingHourRepo,
         IHolidayRepository holidayRepo)
     {
-        public async Task<Result<List<AvailableSlotDto>>> ExecuteAsync(DateOnly date)
+        public async Task<Result<List<AvailableSlotDto>>> ExecuteAsync(DateTime date)
         {
             if (date.DayOfWeek == DayOfWeek.Friday)
                 return Result<List<AvailableSlotDto>>.Failure("جمعه تعطیل است");
 
-            if (date < DateOnly.FromDateTime(DateTime.Today))
-                return Result<List<AvailableSlotDto>>.Failure("تاریخ گذشته");
+            //if (date < DateTime.FromOADate(DateTime.Today))
+            //    return Result<List<AvailableSlotDto>>.Failure("تاریخ گذشته");
 
-            if (await holidayRepo.IsHolidayAsync(date))
-                return Result<List<AvailableSlotDto>>.Failure("این روز تعطیل است");
+            //if (await holidayRepo.IsHolidayAsync(date))
+            //    return Result<List<AvailableSlotDto>>.Failure("این روز تعطیل است");
 
             var workingHour = (await workingHourRepo.GetAllAsync())
                 .FirstOrDefault(w => w.DayOfWeek == date.DayOfWeek && w.IsActive);

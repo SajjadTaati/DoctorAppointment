@@ -22,7 +22,7 @@ namespace DoctorAppointment.Application.UseCases.Admin
                 //!BCrypt.Net.BCrypt.Verify(request.Password, admin.PasswordHash))
                 return Result<AuthResponse>.Failure("نام کاربری یا رمز عبور اشتباه است");
 
-            var token = jwt.GenerateAdminToken(admin.Id, admin.Username);
+            var token = jwt.GenerateUserToken(admin.Id, admin.Username);
             return Result<AuthResponse>.Success(new AuthResponse(token, admin.Username, null));
         }
     }

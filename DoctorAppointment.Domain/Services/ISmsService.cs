@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DoctorAppointment.Domain.Services
 {
-    public interface ISmsService
-    {
-        Task SendOtpAsync(string phone, string code);
-        Task SendAppointmentConfirmationAsync(string phone, DateOnly date, TimeSpan time);
-        Task SendStatusChangeAsync(string phone, string status);
-    }
+    //public interface ISmsService
+    //{
+    //    Task SendOtpAsync(string phone, string code);
+    //    Task SendAppointmentConfirmationAsync(string phone, DateOnly date, TimeSpan time);
+    //    Task SendStatusChangeAsync(string phone, string status);
+    //}
 }

@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace DoctorAppointment.Application.UseCases.Auth
 {
-    public class SendOtpUseCase(IUserRepository userRepo, ISmsService sms)
+    public class SendOtpUseCase(IUserRepository userRepo
+        //ISmsService sms
+        )
     {
         public async Task<Result<string>> ExecuteAsync(SendOtpRequest request)
         {
@@ -26,7 +28,7 @@ namespace DoctorAppointment.Application.UseCases.Auth
             user.OtpExpiry = DateTime.UtcNow.AddMinutes(5);
             await userRepo.UpdateAsync(user);
 
-            await sms.SendOtpAsync(request.Phone, code);
+         //   await sms.SendOtpAsync(request.Phone, code);
             return Result<string>.Success("کد ارسال شد");
         }
     }

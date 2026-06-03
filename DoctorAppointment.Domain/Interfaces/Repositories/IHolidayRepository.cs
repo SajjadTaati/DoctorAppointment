@@ -9,9 +9,9 @@ namespace DoctorAppointment.Domain.Interfaces.Repositories
 {
     public interface IHolidayRepository
     {
-        Task<List<Holiday>> GetAllAsync();
+       Task<List<Holiday>> GetAllAsync();
         Task<bool> IsHolidayAsync(DateOnly date);
         Task<Holiday> CreateAsync(Holiday holiday);
-        Task DeleteAsync(int id);
+       Task DeleteAsync(int id);
     }
 }

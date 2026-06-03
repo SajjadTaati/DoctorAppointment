@@ -12,8 +12,9 @@ namespace DoctorAppointment.Application.UseCases.Admin
 {
     public class ChangeAppointmentStatusUseCase(
      IAppointmentRepository appointmentRepo,
-     IUserRepository userRepo,
-     ISmsService sms)
+     IUserRepository userRepo
+     //ISmsService sms
+        )
     {
         public async Task<Result<string>> ExecuteAsync(int appointmentId, string newStatus)
         {
@@ -27,8 +28,8 @@ namespace DoctorAppointment.Application.UseCases.Admin
             await appointmentRepo.UpdateAsync(appointment);
 
             var user = await userRepo.GetByIdAsync(appointment.UserId);
-            if (user is not null)
-                await sms.SendStatusChangeAsync(user.Phone, newStatus);
+            //if (user is not null)
+            //    await sms.SendStatusChangeAsync(user.Phone, newStatus);
 
             return Result<string>.Success("وضعیت به‌روز شد");
         }

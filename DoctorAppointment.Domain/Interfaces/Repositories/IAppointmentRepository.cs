@@ -8,15 +8,20 @@ using System.Threading.Tasks;
 
 namespace DoctorAppointment.Domain.Interfaces.Repositories
 {
-    public interface IAppointmentRepository
-    {
-        Task<List<Appointment>> GetByDateAsync(DateOnly date);
-        Task<List<Appointment>> GetByUserIdAsync(int userId);
-        Task<Appointment?> GetByIdAsync(int id);
-        Task<bool> ExistsAsync(DateOnly date, TimeSpan timeSlot);
-        Task<Appointment> CreateAsync(Appointment appointment);
-        Task UpdateAsync(Appointment appointment);
-        Task<List<Appointment>> GetAllAsync(AppointmentStatus? status, DateOnly? date, int page, int pageSize);
-        Task<int> CountAsync(AppointmentStatus? status, DateOnly? date);
-    }
+        public interface IAppointmentRepository
+        {
+            Task<List<Appointment>> GetByDateAsync(DateTime date);
+            Task<List<Appointment>> GetByUserIdAsync(int userId);
+            Task<Appointment?> GetByIdAsync(int id);
+            Task<bool> ExistsAsync(DateTime date, DateTime timeSlot);
+            Task<Appointment> CreateAsync(Appointment appointment);
+            Task UpdateAsync(Appointment appointment);
+            Task<int> CountAsync(AppointmentStatus? status, DateTime? date);
+            Task<List<Appointment>> GetFilteredAsync(
+        AppointmentStatus? status,
+        DateTime? date,
+        int page,
+        int pageSize);
+
+        }
 }
